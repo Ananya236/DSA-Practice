@@ -1,3 +1,6 @@
+//#Hackerearth
+//#Remove Duplicates
+
 //Given a string S. Your task is to remove all duplicates characters from the string S.
 //String S contains only lowercase characters ['a'-'z'].
 
