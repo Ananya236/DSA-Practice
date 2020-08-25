@@ -1,3 +1,4 @@
+//Eg:
 //ABC -> 
 //A BC , AB C, A B C , ABC
 
