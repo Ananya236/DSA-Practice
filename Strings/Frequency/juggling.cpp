@@ -1,3 +1,24 @@
+//#Codeforces
+//#Juggling Letters
+
+// You are given n strings s1,s2,…,sn consisting of lowercase Latin letters.
+
+// In one operation you can remove a character from a string si and insert it to an arbitrary position in a string sj (j may be equal to i). You may perform this operation any number of times. Is it possible to make all n strings equal?
+
+//eg:
+//i/p-
+// 2
+// 2
+// caa
+// cbb
+// 3
+// cba
+// cba
+// cbb
+//o/p-
+// YES
+// NO
+
 #include<bits/stdc++.h>
 #define ll unsigned long long int
 using namespace std;
