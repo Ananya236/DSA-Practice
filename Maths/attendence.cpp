@@ -9,7 +9,7 @@
 // Can Chef hope to pass the requirement by the end of the semester?
 
 //e.g.:
-// Sample Input:
+// Input:
 // 3
 // 50
 // 00000000000000000000000000000000000000000000000000
@@ -17,7 +17,7 @@
 // 01010101010101010101010101010101010101010101010101
 // 2
 // 01
-// Sample Output:
+// Output:
 // NO
 // YES
 // YES
