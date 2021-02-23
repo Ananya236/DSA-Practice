@@ -23,11 +23,11 @@ public:
         sort(intervals.begin(), intervals.end());
         for (int i = 0; i < intervals.size(); i++)
         {
-            if (v.empty())
+            if (v.empty()) //empty result vector
                 v.push_back(intervals[i]);
-            else if (v.back()[1] < intervals[i][0])
+            else if (v.back()[1] < intervals[i][0]) //non overlapping case
                 v.push_back(intervals[i]);
-            else
+            else //overlapping case
                 v.back()[1] = max(v.back()[1], intervals[i][1]);
         }
         return v;
