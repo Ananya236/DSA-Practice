@@ -4,7 +4,7 @@ public:
         vector<vector<int>>v (numRows);
         for(int i=0;i<numRows;i++){
             v[i]={1};
-            for(int j=1;j<=i;j++){
+            for(int j=1;j<i+1;j++){
                 if(j==i) v[i].push_back(1);
                 else v[i].push_back(v[i-1][j-1]+v[i-1][j]);
             }
