@@ -16,9 +16,9 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        //At this point slow pointer is at mid of ll and fast is at end;
-        //Now we will reverse the remaining half of ll using slow as head for second half;
+        //At this point slow pointer is at mid of ll and fast is at end
         
+        //Now we will reverse the remaining half of ll using slow as head for second half
         ListNode *prev=NULL, *nxt;
         while(slow){
             nxt = slow->next;
