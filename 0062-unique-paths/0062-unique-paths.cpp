@@ -15,14 +15,27 @@ public:
 //         return v[m-1][n-1];
         
         
+//         *************using 1d DP***************
+        
+        vector<vector<int>> v(2,vector<int>(n,1));
+        
+        for(int i=1;i<m;i++){
+            for(int j=1;j<n;j++){
+                v[i&1][j] = v[(i-1)&1][j] + v[i&1][j-1];
+            }
+        }
+        
+        return v[(m-1)&1][n-1];
+        
+        
 //         *************using Math************
 //         ans = (m+n-2)! / ((m-1)! (n-1)!)
         
-        long ans = 1;
-        for(int i=(m+n-2), j=1; i>=max(m,n); i--,j++){
-            ans= (ans*i)/j;
-        }
+//         long ans = 1;
+//         for(int i=(m+n-2), j=1; i>=max(m,n); i--,j++){
+//             ans= (ans*i)/j;
+//         }
         
-        return ans;
+//         return ans;
     }
 };
