@@ -11,15 +11,15 @@ public:
                 um[nums[i]]++;
             else um[nums[i]] = 1;
         }
-        priority_queue<pi, vector<pi>, greater<pi>> maxh;
+        priority_queue<pi, vector<pi>, greater<pi>> minh;
         for(auto i: um){
-            maxh.push(make_pair(i.second,i.first));
-            if(maxh.size()>k) maxh.pop();
+            minh.push(make_pair(i.second,i.first));
+            if(minh.size()>k) minh.pop();
         }
         vector<int> res;
-        while(maxh.size()){
-            pair<int,int> i = maxh.top();
-            maxh.pop();
+        while(minh.size()){
+            pair<int,int> i = minh.top();
+            minh.pop();
             res.push_back(i.second);
         }
         return res;
