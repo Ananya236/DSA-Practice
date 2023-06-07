@@ -7,9 +7,7 @@ public:
         int n = nums.size();
         if(n==1) return nums;
         for(int i=0;i<n;i++){
-            if(um.find(nums[i]) != um.end())
-                um[nums[i]]++;
-            else um[nums[i]] = 1;
+            um[nums[i]]++;
         }
         priority_queue<pi, vector<pi>, greater<pi>> minh;
         for(auto i: um){
