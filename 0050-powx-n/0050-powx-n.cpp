@@ -10,7 +10,7 @@ public:
         }
         else {
             if(n&1) //n is odd
-                return 1/(x * myPow(x*x,-(n+1)/2));
+                return 1/(x * myPow(x*x, -(n+1)/2));
             else
                 return 1/myPow(x*x, -(n/2));
         }
