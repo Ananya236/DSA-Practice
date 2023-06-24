@@ -30,7 +30,6 @@ public:
         map<int, vector<string>> temp;
         for (auto& i : mp) {
             int parent = find(parents, i.second);
-            cout<<parent;
             if (temp[parent].empty())
                 temp[parent].push_back(accounts[parent][0]);
             temp[parent].push_back(i.first);
