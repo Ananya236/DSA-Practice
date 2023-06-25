@@ -31,7 +31,6 @@ public:
         
         for(int i=0; i<n; i++){
             int minV = getMinV(wt, vis);
-            cout<<minV<<"\n";
             if(!minV) return -1;
             vis[minV-1] = 1;
             
