@@ -1,29 +1,29 @@
-class Solution {
-public:
-    bool foundCycle(vector<vector<int>>& graph, vector<int> &vis, int curr, vector<int> &res){
-        vis[curr] = 1;
-        for(int i: graph[curr]){
-            if(vis[i]==1 || (!vis[i] && !foundCycle(graph, vis, i, res))) return false;
-        }
-        vis[curr]=2;
-        res.push_back(curr);
-        return true;
-    }
+// class Solution {
+// public:
+//     bool foundCycle(vector<vector<int>>& graph, vector<int> &vis, int curr, vector<int> &res){
+//         vis[curr] = 1;
+//         for(int i: graph[curr]){
+//             if(vis[i]==1 || (!vis[i] && !foundCycle(graph, vis, i, res))) return false;
+//         }
+//         vis[curr]=2;
+//         res.push_back(curr);
+//         return true;
+//     }
     
-    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<int> vis(n,0);
-        vector<int> res;
+//     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+//         int n = graph.size();
+//         vector<int> vis(n,0);
+//         vector<int> res;
         
-        for(int i=0;i<n;i++)
-            if(!vis[i])
-                foundCycle(graph, vis, i, res);
+//         for(int i=0;i<n;i++)
+//             if(!vis[i])
+//                 foundCycle(graph, vis, i, res);
         
-        sort(res.begin(), res.end());
+//         sort(res.begin(), res.end());
         
-        return res;
-    }
-};
+//         return res;
+//     }
+// };
 
 // class Solution {
 // public:
@@ -57,3 +57,37 @@ public:
 //         return res;
 //     }
 // };
+
+
+class Solution {
+public:
+    bool foundCycle(vector<vector<int>>& graph, vector<int> &vis, int curr, vector<int> &res){
+        vis[curr] = 1;
+        bool isCycle = false;
+        for(auto i: graph[curr]){
+            if(vis[i] == 0) {
+                isCycle = foundCycle(graph, vis, i, res);
+            } else if(vis[i] == 1) {
+                isCycle = true;
+            }
+            if(isCycle) return true;
+        }
+        vis[curr]=2;
+        res.push_back(curr);
+        return false;
+    }
+    
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> vis(n,0);
+        vector<int> res;
+        
+        for(int i=0;i<n;i++)
+            if(vis[i]==0)
+                foundCycle(graph, vis, i, res);
+        
+        sort(res.begin(), res.end());
+        
+        return res;
+    }
+};
