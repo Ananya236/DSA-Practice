@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int totalProfit = 0;
-        int n = prices.size();
+//         int n = prices.size();
 //         int minP = prices[0];
 //         int currProfit = 0;
         
@@ -20,7 +20,7 @@ public:
 //         return totalProfit+currProfit;
         
         
-        for(int i=1;i<n;i++){
+        for(int i=1;i<prices.size();i++){
             if(prices[i]>prices[i-1]){
                 totalProfit+=prices[i]-prices[i-1];
             }
