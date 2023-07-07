@@ -10,11 +10,10 @@ public:
             }
         }
         
-        for(int i=n-1; i>=0; i--){
-            if(s[i]=='(' && open) {
+        for(int i=n-1; i>=0 && open; i--){
+            if(s[i]=='(') {
                 open--;
                 s[i]='#';
-                continue;
             }
         }
         
