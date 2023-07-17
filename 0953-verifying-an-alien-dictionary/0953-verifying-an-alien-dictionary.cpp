@@ -1,24 +1,23 @@
 class Solution {
 public:
     bool isAlienSorted(vector<string>& words, string order) {
-        vector<char> hash(26);
+        int n = order.size();
         
-        for(int i=0;i<order.length();i++)
-            hash[order[i]-97]=i+97;
+        vector<char> hash(n);
         
+        for(int i=0;i<n;i++)
+            hash[order[i]-'a'] = i+97;
         
-        for(int i=0;i<words.size();i++)
-        {
-            string s=words[i];
-            string temp;
-            for(auto ch:s)
-                temp.push_back(hash[ch-97]);
+        for(int i=0;i<words.size();i++){
+            string temp="";
+            for(char l: words[i])
+                temp+=hash[l-'a'];
             words[i]=temp;
         }
         
-       for(int i=1;i<words.size();i++)
-           if(words[i]<words[i-1])
-               return false;
+        for(int i=1; i<words.size(); i++){
+            if(words[i]<words[i-1]) return false;
+        }
         
         return true;
     }
