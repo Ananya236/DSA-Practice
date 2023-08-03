@@ -15,7 +15,6 @@ public:
             else t1.push(c);
         }
         
-        cout<<s1.size()<<" "<<t1.size();
         return s1==t1;
     }
 };
