@@ -13,12 +13,13 @@ public:
 
         int n=s.length();
         int res = rv[s[n-1]];
-        for(int i=n-2;i>=0;i--){
+        
+        for(int i=n-2; i>=0; i--){
             if(rv[s[i]]<rv[s[i+1]])
                 res-=rv[s[i]];
-            else  res+=rv[s[i]];
+            else res+=rv[s[i]];
         }
-
+        
         return res;
     }
 };
