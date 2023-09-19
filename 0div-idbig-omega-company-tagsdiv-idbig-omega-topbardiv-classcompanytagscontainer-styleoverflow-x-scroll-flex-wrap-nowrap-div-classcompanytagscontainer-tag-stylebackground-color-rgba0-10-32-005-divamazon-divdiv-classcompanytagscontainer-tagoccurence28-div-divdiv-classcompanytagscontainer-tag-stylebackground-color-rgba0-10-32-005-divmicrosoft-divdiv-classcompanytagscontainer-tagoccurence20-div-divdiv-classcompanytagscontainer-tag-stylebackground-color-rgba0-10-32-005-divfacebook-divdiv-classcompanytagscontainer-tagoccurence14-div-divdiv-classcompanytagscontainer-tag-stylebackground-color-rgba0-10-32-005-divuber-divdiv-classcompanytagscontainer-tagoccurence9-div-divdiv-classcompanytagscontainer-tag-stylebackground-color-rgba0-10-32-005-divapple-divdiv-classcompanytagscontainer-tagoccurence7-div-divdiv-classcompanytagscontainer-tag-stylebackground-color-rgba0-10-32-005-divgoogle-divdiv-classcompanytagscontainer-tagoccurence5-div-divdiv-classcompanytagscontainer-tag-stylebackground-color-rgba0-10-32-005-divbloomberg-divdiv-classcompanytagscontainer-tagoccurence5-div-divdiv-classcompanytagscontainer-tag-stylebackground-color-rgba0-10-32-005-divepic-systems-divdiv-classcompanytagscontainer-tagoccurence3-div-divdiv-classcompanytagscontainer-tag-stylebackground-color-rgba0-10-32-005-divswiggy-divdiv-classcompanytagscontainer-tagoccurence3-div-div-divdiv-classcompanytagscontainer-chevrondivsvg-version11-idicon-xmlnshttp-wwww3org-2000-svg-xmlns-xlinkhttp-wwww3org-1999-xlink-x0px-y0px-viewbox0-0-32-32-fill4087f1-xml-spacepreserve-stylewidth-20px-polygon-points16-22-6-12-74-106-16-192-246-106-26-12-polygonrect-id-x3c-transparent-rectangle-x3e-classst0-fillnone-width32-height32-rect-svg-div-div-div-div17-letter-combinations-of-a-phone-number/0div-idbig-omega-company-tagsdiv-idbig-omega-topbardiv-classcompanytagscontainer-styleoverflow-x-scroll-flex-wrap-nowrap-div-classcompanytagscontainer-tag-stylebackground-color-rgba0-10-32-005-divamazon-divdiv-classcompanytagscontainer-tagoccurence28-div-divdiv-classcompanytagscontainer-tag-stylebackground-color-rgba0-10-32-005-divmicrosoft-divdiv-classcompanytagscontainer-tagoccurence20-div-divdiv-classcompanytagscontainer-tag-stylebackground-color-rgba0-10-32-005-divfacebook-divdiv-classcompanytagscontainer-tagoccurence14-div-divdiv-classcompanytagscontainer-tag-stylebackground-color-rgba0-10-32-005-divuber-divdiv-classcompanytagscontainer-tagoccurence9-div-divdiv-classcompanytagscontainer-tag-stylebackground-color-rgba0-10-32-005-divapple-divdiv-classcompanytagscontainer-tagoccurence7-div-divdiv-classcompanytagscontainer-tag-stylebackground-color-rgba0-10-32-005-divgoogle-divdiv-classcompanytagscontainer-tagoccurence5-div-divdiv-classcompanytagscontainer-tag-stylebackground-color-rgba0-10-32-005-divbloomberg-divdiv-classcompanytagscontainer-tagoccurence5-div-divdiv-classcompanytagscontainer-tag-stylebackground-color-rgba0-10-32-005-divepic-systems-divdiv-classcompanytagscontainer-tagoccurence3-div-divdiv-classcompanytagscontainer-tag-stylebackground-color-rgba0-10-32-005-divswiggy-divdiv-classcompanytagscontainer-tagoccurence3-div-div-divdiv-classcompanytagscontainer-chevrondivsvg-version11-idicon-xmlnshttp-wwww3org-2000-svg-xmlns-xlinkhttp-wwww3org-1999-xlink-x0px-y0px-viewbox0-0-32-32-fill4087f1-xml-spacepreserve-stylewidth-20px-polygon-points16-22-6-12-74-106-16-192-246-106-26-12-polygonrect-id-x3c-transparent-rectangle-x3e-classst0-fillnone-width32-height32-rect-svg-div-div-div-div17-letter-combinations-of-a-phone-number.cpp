@@ -10,8 +10,8 @@ public:
         
         string curr = phone[digits[index]-'0'];
         
-        for(int i=0; i<curr.size();i++) {
-            solve(digits, index+1, op+curr[i], v);
+        for(char c: curr) {
+            solve(digits, index+1, op+c, v);
         }
     }
     
