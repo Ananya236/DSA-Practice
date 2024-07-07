@@ -9,37 +9,37 @@
  * };
  */
 class Solution {
+    struct compare {
+        bool operator()(ListNode* a, ListNode* b) {
+            return a->val > b->val;
+        }
+    };
+
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        int k = lists.size();
-        vector<ListNode *> pointers(k);
-        ListNode* merged = new ListNode();
-        ListNode* tail = merged;
-
-        for(int i=0;i<k;i++){
-            pointers[i] = lists[i];
-        }
-
-        while(true){
-            int minNum = INT_MAX;
-            int minIndex = -1;
-            bool isAllNull = true;
-            for(int j=0;j<k;j++){
-                if(pointers[j] && pointers[j]->val < minNum){
-                    minNum = pointers[j]->val;
-                    minIndex = j;
-                    isAllNull = false;
-                }
-            }
-            if(isAllNull) break;
-            ListNode* temp = new ListNode(minNum);
-            tail->next = temp;
-            tail = tail->next;
-            if(pointers[minIndex]){
-                pointers[minIndex]=pointers[minIndex]->next;
+        std::priority_queue<ListNode*, std::vector<ListNode*>, compare> minHeap;
+    
+        for (auto list : lists) {
+            if (list) {
+                minHeap.push(list);
             }
         }
-
-        return merged->next;
+    
+        ListNode merged(0);
+        ListNode* tail = &merged;
+    
+        while (!minHeap.empty()) {
+            ListNode* node = minHeap.top();
+            minHeap.pop();
+            
+            tail->next = node;
+            tail = node;
+            
+            if (node->next) {
+                minHeap.push(node->next);
+            }
+        }
+        
+        return merged.next;
     }
 };
