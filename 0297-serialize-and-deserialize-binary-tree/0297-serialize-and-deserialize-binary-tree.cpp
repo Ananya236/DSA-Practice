@@ -12,9 +12,15 @@ public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
+        // if(root)
+        //     return to_string(root->val) + ' ' + serialize(root->left) + serialize(root->right);
+        // return "NULL ";
+        ostringstream op;
         if(root)
-            return to_string(root->val) + ' ' + serialize(root->left) + serialize(root->right);
-        return "NULL ";
+            op << root->val << ' ' << serialize(root->left) << serialize(root->right);
+        else
+            op << "NULL ";
+        return op.str();
     }
 
     // Decodes your encoded data to tree.
