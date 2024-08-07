@@ -1,52 +1,37 @@
 class Solution {
 public:
     string numberToWords(int num) {
-        // Handle the special case where the number is zero
         if (num == 0) return "Zero";
-
-        // Arrays to store words for single digits, tens, and thousands
-        const vector<string> ones = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-        const vector<string> tens = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-        const vector<string> thousands = {"", "Thousand", "Million", "Billion"};
-
-        // StringBuilder to accumulate the result
+        
+        vector<string> ones = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+        vector<string> tens = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+        vector<string> thousands = {"", "Thousand", "Million", "Billion"};
+        
         string result = "";
-        int groupIndex = 0;
-
-        // Process the number in chunks of 1000
-        while (num > 0) {
-            // Process the last three digits
-            if (num % 1000 != 0) {
-                string groupResult = "";
-                int part = num % 1000;
-
-                // Handle hundreds
-                if (part >= 100) {
-                    groupResult = ones[part / 100] + " Hundred ";
-                    part %= 100;
+        int thNum = 0;
+        
+        while(num){
+            int curr = num % 1000;
+            string tempRes = "";
+            
+            if(curr) {
+                int hdNum = curr/100;
+                if(hdNum) tempRes += ones[hdNum] + " Hundred ";
+                curr = curr % 100;
+                if(curr >= 20) {
+                    tempRes += tens[curr/10] + " ";
+                    curr = curr % 10;
                 }
-
-                // Handle tens and units
-                if (part >= 20) {
-                    groupResult += tens[part / 10] + " ";
-                    part %= 10;
-                }
-
-                // Handle units
-                if (part > 0) {
-                    groupResult += ones[part] + " ";
-                }
-
-                // Append the scale (thousand, million, billion) for the current group
-                groupResult += thousands[groupIndex] + " ";
-                // Insert the group result at the beginning of the final result
-                result = groupResult + result;
+                if(curr) tempRes += ones[curr] + " ";
+                
+                tempRes += thousands[thNum] + " ";
             }
-            // Move to the next chunk of 1000
-            num /= 1000;
-            groupIndex++;
+            
+            result = tempRes + result;
+            thNum++;
+            num = num/1000;
         }
-
-        return result.substr(0, result.find_last_not_of(" ") + 1); // Remove trailing spaces
+        
+        return result.substr(0, result.find_last_not_of(" ") + 1);
     }
 };
