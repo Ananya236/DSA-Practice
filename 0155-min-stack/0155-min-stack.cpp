@@ -1,8 +1,8 @@
 class MinStack {
 public:
     /** initialize your data structure here. */
-    stack<int> min;
-    stack<int> s;
+    stack<long> s;
+    long minE;
     
     public:
     MinStack() {
@@ -10,27 +10,35 @@ public:
     }
     
     void push(int x) {
-        s.push(x);
-        if(min.empty() || min.top()>=x)
-            min.push(x);
+        if(s.empty()){
+            s.push(x);
+            minE = x;
+        }
+        else if(x>=minE) s.push(x);
+        else {
+            s.push((long)2*x-minE);
+            minE=x;
+        }
     }
     
     void pop() {
-        if(s.top()==min.top())
-            min.pop();
+        if(s.top()<minE)
+            minE= 2*minE-s.top();
         s.pop();
     }
     
     int top() {
-        if(!s.empty())
-            return s.top();
-        return -1;
+        if(s.empty())
+            return -1;
+        if(s.top()<minE)
+            return minE;
+        return s.top();
     }
     
     int getMin() {
-        if(!min.empty())
-            return min.top();
-        return -1;
+        if(s.empty())
+            return -1;
+        return minE;
     }
 };
 
